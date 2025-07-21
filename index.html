@@ -250,18 +250,31 @@
   <div class="row">
     <!-- Company Information -->
     <div class="col-md-6">
-      <h5><strong>Company Information</strong></h5>
-      <table class="table table-bordered">
-        <tbody>
-          <tr><th>Business Name</th><td>RAK Ceramics P.J.S.C.</td></tr>
-          <tr><th>Type of Business</th><td>Public Joint Stock Company (P.J.S.C.)</td></tr>
-          <tr><th>Sector/Industry</th><td>Manufacturing – Ceramics & Sanitaryware</td></tr>
-          <tr><th>Business Age</th><td>36 years (Established in 1989)</td></tr>
-          <tr><th>Registered Address</th>
-            <td>P.O. Box 4714, Al Jazeera Al Hamra,<br>Ras Al Khaimah, United Arab Emirates</td></tr>
-        </tbody>
-      </table>
-    </div>
+  <h5><strong>Company Information</strong></h5>
+  <table class="table table-bordered" id="rakCompanyInfo" style="display: table;">
+    <tbody>
+      <tr><th>Business Name</th><td>RAK Ceramics P.J.S.C.</td></tr>
+      <tr><th>Type of Business</th><td>Public Joint Stock Company (P.J.S.C.)</td></tr>
+      <tr><th>Sector/Industry</th><td>Manufacturing – Ceramics & Sanitaryware</td></tr>
+      <tr><th>Business Age</th><td>36 years (Established in 1989)</td></tr>
+      <tr><th>Registered Address</th>
+        <td>P.O. Box 4714, Al Jazeera Al Hamra,<br>Ras Al Khaimah, United Arab Emirates</td></tr>
+    </tbody>
+  </table>
+  <!-- Add Batelco version just below, default hidden -->
+  <table class="table table-bordered" id="batelcoCompanyInfo" style="display: none;">
+    <tbody>
+      <tr><th>Business Name</th><td>Bahrain Telecommunications Company (Batelco) B.S.C.</td></tr>
+      <tr><th>Type of Business</th><td>Public Bahraini Shareholding Company (B.S.C.)</td></tr>
+      <tr><th>Sector/Industry</th><td>Telecommunications</td></tr>
+      <tr><th>Business Age</th><td>43 years (Established in 1981)</td></tr>
+      <tr><th>Registered Address</th>
+        <td>P.O. Box 14, Manama, Kingdom of Bahrain</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 
     <!-- Loan Request Details -->
     <div class="col-md-6">
@@ -269,7 +282,7 @@
       <table class="table table-bordered">
         <tbody>
           <tr><th>Loan Purpose</th><td>Expansion of production capacity to meet increasing global demand</td></tr>
-          <tr><th>Requested Loan Amount</th><td>AED 150,000</td></tr>
+          <tr><th>Requested Loan Amount</th><td>BD 50,000</td></tr>
           <tr><th>Tenure</th><td>7 years</td></tr>
           <tr><th>Proposed Repayment Schedule</th><td>Quarterly installments</td></tr>
         </tbody>
@@ -303,28 +316,71 @@
             </h3>
             <button
               class="btn btn-warning edit-btn"
-              onclick="toggleEdit('financialTable1')"
+              onclick="toggleEdit('batelcoPLTable')"
             >
               Edit
             </button>
             <button
               class="btn btn-success edit-btn"
-              onclick="saveTable('financialTable1')"
+              onclick="saveTable('batelcoPLTable')"
             >
               Save
             </button>
 
             <div
-              id="noteContainer-financialTable1"
+              id="noteContainer-batelcoPLTable"
               style="display: none; margin-bottom: 10px"
             >
               <input
                 type="text"
-                id="noteInput-financialTable1"
+                id="noteInput-batelcoPLTable"
                 class="form-control"
                 placeholder="Enter note for audit log"
               />
             </div>
+
+
+<!-- Batelco Profit & Loss Table -->
+<div id="batelcoPL" style="display:none;">
+  <table class="table table-bordered text-center" id="batelcoPLTable">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>31 March 2024 BD'000</th>
+        <th>31 March 2023 BD'000</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>REVENUE</td><td>110,459</td><td>103,544</td></tr>
+      <tr><td>Network operating expenses</td><td>(40,555)</td><td>(35,231)</td></tr>
+      <tr><td>Staff costs</td><td>(14,105)</td><td>(13,333)</td></tr>
+      <tr><td>Depreciation, amortisation, impairment</td><td>(17,050)</td><td>(17,217)</td></tr>
+      <tr><td>Impairment loss on receivables & contracts</td><td>(828)</td><td>(1,108)</td></tr>
+      <tr><td>Other operating expenses</td><td>(10,888)</td><td>(11,158)</td></tr>
+      <tr><td>Total expenses</td><td>(83,426)</td><td>(78,047)</td></tr>
+      <tr><td>Results from operating activities</td><td>27,033</td><td>25,497</td></tr>
+      <tr><td>Finance and related income</td><td>2,410</td><td>2,032</td></tr>
+      <tr><td>Finance and related expenses</td><td>(6,731)</td><td>(5,566)</td></tr>
+      <tr><td>Other income (net)</td><td>183</td><td>566</td></tr>
+      <tr><td>Share of profit from equity investees</td><td>368</td><td>313</td></tr>
+      <tr><td>Profit before taxation</td><td>23,263</td><td>22,842</td></tr>
+      <tr><td>Income tax expense</td><td>(1,892)</td><td>(2,559)</td></tr>
+      <tr><td>Profit for the period</td><td>21,371</td><td>20,283</td></tr>
+      <tr><td>Total</td><td>21,371</td><td>20,283</td></tr>
+      <tr><td>Other comprehensive income: - Foreign currency translation differences</td><td>(301)</td><td>1,108</td></tr>
+      <tr><td>Other comprehensive income: - Investment fair value changes</td><td>21,203</td><td>1,608</td></tr>
+      <tr><td>Other comprehensive income, net of tax</td><td>20,902</td><td>2,716</td></tr>
+      <tr><td>Profit for the period</td><td>21,371</td><td>20,283</td></tr>
+      <tr><td>Attributable to: - Equity holders of the Company</td><td>18,794</td><td>18,045</td></tr>
+      <tr><td>Attributable to: - Non-controlling interest</td><td>2,577</td><td>2,238</td></tr>
+      <tr><td>Total comprehensive income</td><td>42,273</td><td>22,999</td></tr>
+      <tr><td>Attributable to: - Equity holders of the Company</td><td>39,696</td><td>20,761</td></tr>
+      <tr><td>Attributable to: - Non-controlling interest</td><td>2,577</td><td>2,238</td></tr>
+      <tr><td>Basic and Diluted earnings per share (Fils)</td><td>11.4</td><td>10.9</td></tr>
+    </tbody>
+  </table>
+</div>
+
 
 	<!-- Nike Profit & Loss Table -->
 <div id="nikePL" style="display: none;">
@@ -374,135 +430,135 @@
               </thead>
               <tbody>
                 <tr>
-                  <td contenteditable="false">Revenue</td>
-                  <td contenteditable="false">1,558,650</td>
-                  <td contenteditable="false">1,754,361</td>
-                  <td contenteditable="false">777,024</td>
-                  <td contenteditable="false">871,983</td>
+                  <td>Revenue</td>
+                  <td>1,558,650</td>
+                  <td>1,754,361</td>
+                  <td>777,024</td>
+                  <td>871,983</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Cost of sales</td>
-                  <td contenteditable="false">-943,844</td>
-                  <td contenteditable="false">-1,078,181</td>
-                  <td contenteditable="false">-469,680</td>
-                  <td contenteditable="false">-536,951</td>
+                  <td>Cost of sales</td>
+                  <td>-943,844</td>
+                  <td>-1,078,181</td>
+                  <td>-469,680</td>
+                  <td>-536,951</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Gross profit</td>
-                  <td contenteditable="false">614,806</td>
-                  <td contenteditable="false">676,180</td>
-                  <td contenteditable="false">307,344</td>
-                  <td contenteditable="false">335,032</td>
+                  <td>Gross profit</td>
+                  <td>614,806</td>
+                  <td>676,180</td>
+                  <td>307,344</td>
+                  <td>335,032</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">
+                  <td>
                     Administrative and general expenses
                   </td>
-                  <td contenteditable="false">-117,228</td>
-                  <td contenteditable="false">-118,987</td>
-                  <td contenteditable="false">-59,490</td>
-                  <td contenteditable="false">-61,191</td>
+                  <td>-117,228</td>
+                  <td>-118,987</td>
+                  <td>-59,490</td>
+                  <td>-61,191</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">
+                  <td>
                     Selling and distribution expenses
                   </td>
-                  <td contenteditable="false">-328,461</td>
-                  <td contenteditable="false">-362,023</td>
-                  <td contenteditable="false">-167,931</td>
-                  <td contenteditable="false">-181,631</td>
+                  <td>-328,461</td>
+                  <td>-362,023</td>
+                  <td>-167,931</td>
+                  <td>-181,631</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Other income</td>
-                  <td contenteditable="false">36,753</td>
-                  <td contenteditable="false">36,166</td>
-                  <td contenteditable="false">17,403</td>
-                  <td contenteditable="false">21,127</td>
+                  <td>Other income</td>
+                  <td>36,753</td>
+                  <td>36,166</td>
+                  <td>17,403</td>
+                  <td>21,127</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Finance costs</td>
-                  <td contenteditable="false">-66,873</td>
-                  <td contenteditable="false">-60,374</td>
-                  <td contenteditable="false">-31,233</td>
-                  <td contenteditable="false">-32,478</td>
+                  <td>Finance costs</td>
+                  <td>-66,873</td>
+                  <td>-60,374</td>
+                  <td>-31,233</td>
+                  <td>-32,478</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Finance income</td>
-                  <td contenteditable="false">9,059</td>
-                  <td contenteditable="false">7,474</td>
-                  <td contenteditable="false">1,979</td>
-                  <td contenteditable="false">5,886</td>
+                  <td>Finance income</td>
+                  <td>9,059</td>
+                  <td>7,474</td>
+                  <td>1,979</td>
+                  <td>5,886</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Loss on net monetary position</td>
-                  <td contenteditable="false">-1,841</td>
-                  <td contenteditable="false">-571</td>
-                  <td contenteditable="false">-946</td>
-                  <td contenteditable="false">119</td>
+                  <td>Loss on net monetary position</td>
+                  <td>-1,841</td>
+                  <td>-571</td>
+                  <td>-946</td>
+                  <td>119</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">
+                  <td>
                     Share of (loss)/profit in equity accounted investees
                   </td>
-                  <td contenteditable="false">-125</td>
-                  <td contenteditable="false">443</td>
-                  <td contenteditable="false">-155</td>
-                  <td contenteditable="false">421</td>
+                  <td>-125</td>
+                  <td>443</td>
+                  <td>-155</td>
+                  <td>421</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Impairment loss</td>
-                  <td contenteditable="false">-12,364</td>
-                  <td contenteditable="false">-13,126</td>
-                  <td contenteditable="false">-7,178</td>
-                  <td contenteditable="false">-7,202</td>
+                  <td>Impairment loss</td>
+                  <td>-12,364</td>
+                  <td>-13,126</td>
+                  <td>-7,178</td>
+                  <td>-7,202</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Profit before tax</td>
-                  <td contenteditable="false">133,726</td>
-                  <td contenteditable="false">165,182</td>
-                  <td contenteditable="false">59,793</td>
-                  <td contenteditable="false">80,083</td>
+                  <td>Profit before tax</td>
+                  <td>133,726</td>
+                  <td>165,182</td>
+                  <td>59,793</td>
+                  <td>80,083</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Tax expense</td>
-                  <td contenteditable="false">-19,808</td>
-                  <td contenteditable="false">-9,991</td>
-                  <td contenteditable="false">-8,775</td>
-                  <td contenteditable="false">-4,993</td>
+                  <td>Tax expense</td>
+                  <td>-19,808</td>
+                  <td>-9,991</td>
+                  <td>-8,775</td>
+                  <td>-4,993</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Profit for the period</td>
-                  <td contenteditable="false">113,918</td>
-                  <td contenteditable="false">155,191</td>
-                  <td contenteditable="false">51,018</td>
-                  <td contenteditable="false">75,090</td>
+                  <td>Profit for the period</td>
+                  <td>113,918</td>
+                  <td>155,191</td>
+                  <td>51,018</td>
+                  <td>75,090</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">
+                  <td>
                     Profit attributable to Owners of the Company
                   </td>
-                  <td contenteditable="false">107,883</td>
-                  <td contenteditable="false">143,012</td>
-                  <td contenteditable="false">50,274</td>
-                  <td contenteditable="false">69,600</td>
+                  <td>107,883</td>
+                  <td>143,012</td>
+                  <td>50,274</td>
+                  <td>69,600</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">
+                  <td>
                     Profit attributable to Non-controlling interests
                   </td>
-                  <td contenteditable="false">6,035</td>
-                  <td contenteditable="false">12,179</td>
-                  <td contenteditable="false">744</td>
-                  <td contenteditable="false">5,490</td>
+                  <td>6,035</td>
+                  <td>12,179</td>
+                  <td>744</td>
+                  <td>5,490</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">
+                  <td>
                     Earnings per share - basic and diluted (AED)
                   </td>
-                  <td contenteditable="false">0.11</td>
-                  <td contenteditable="false">0.14</td>
-                  <td contenteditable="false">0.05</td>
-                  <td contenteditable="false">0.07</td>
+                  <td>0.11</td>
+                  <td>0.14</td>
+                  <td>0.05</td>
+                  <td>0.07</td>
                 </tr>
               </tbody>
             </table>
@@ -517,27 +573,80 @@
             </h3>
             <button
               class="btn btn-warning edit-btn"
-              onclick="toggleEdit('financialTable2')"
+              onclick="toggleEdit('batelcoBSTable')"
             >
               Edit
             </button>
             <button
               class="btn btn-success edit-btn"
-              onclick="saveTable('financialTable2')"
+              onclick="saveTable('batelcoBSTable')"
             >
               Save
             </button>
             <div
-              id="noteContainer-financialTable2"
+              id="noteContainer-batelcoBSTable"
               style="display: none; margin-bottom: 10px"
             >
               <input
                 type="text"
-                id="noteInput-financialTable2"
+                id="noteInput-batelcoBSTable"
                 class="form-control"
                 placeholder="Enter note for audit log"
               />
             </div>
+
+
+
+<!-- Batelco Balance Sheet Table -->
+<div id="batelcoBS" style="display:none;">
+  <table class="table table-bordered text-center" id="batelcoBSTable">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>31 March 2024 BD'000 (Reviewed)</th>
+        <th>31 Dec 2023 BD'000 (Audited)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Property and equipment</td><td>365,058</td><td>366,838</td></tr>
+      <tr><td>Right-of-use assets</td><td>55,239</td><td>55,606</td></tr>
+      <tr><td>Goodwill</td><td>137,758</td><td>137,775</td></tr>
+      <tr><td>Other intangible assets</td><td>159,577</td><td>162,461</td></tr>
+      <tr><td>Equity accounted investees</td><td>8,922</td><td>8,541</td></tr>
+      <tr><td>Deferred tax assets</td><td>6,474</td><td>6,375</td></tr>
+      <tr><td>Investments</td><td>60,405</td><td>35,371</td></tr>
+      <tr><td>Other non-current assets</td><td>11,462</td><td>6,706</td></tr>
+      <tr><td>Total non-current assets</td><td>804,895</td><td>779,673</td></tr>
+      <tr><td>Inventories</td><td>9,672</td><td>7,433</td></tr>
+      <tr><td>Trade and other receivables</td><td>158,555</td><td>142,201</td></tr>
+      <tr><td>Investments</td><td>19,451</td><td>291</td></tr>
+      <tr><td>Cash and bank balances</td><td>208,499</td><td>235,767</td></tr>
+      <tr><td>Total current assets</td><td>396,177</td><td>385,692</td></tr>
+      <tr><td>Total assets</td><td>1,201,072</td><td>1,165,365</td></tr>
+      <tr><td>Trade and other payables (non-current)</td><td>54,797</td><td>60,769</td></tr>
+      <tr><td>Lease liabilities (non-current)</td><td>44,665</td><td>45,776</td></tr>
+      <tr><td>Loans and borrowings (non-current)</td><td>73,053</td><td>244,198</td></tr>
+      <tr><td>Deferred tax liabilities</td><td>5,634</td><td>5,729</td></tr>
+      <tr><td>Total non-current liabilities</td><td>178,149</td><td>356,472</td></tr>
+      <tr><td>Trade and other payables (current)</td><td>254,689</td><td>207,027</td></tr>
+      <tr><td>Lease liabilities (current)</td><td>9,369</td><td>8,627</td></tr>
+      <tr><td>Loans and borrowings (current)</td><td>179,904</td><td>10,696</td></tr>
+      <tr><td>Total current liabilities</td><td>443,962</td><td>226,350</td></tr>
+      <tr><td>Total liabilities</td><td>622,111</td><td>582,822</td></tr>
+      <tr><td>Net assets</td><td>578,961</td><td>582,543</td></tr>
+      <tr><td>Share capital</td><td>166,320</td><td>166,320</td></tr>
+      <tr><td>Statutory reserve</td><td>88,856</td><td>86,188</td></tr>
+      <tr><td>General reserve</td><td>44,000</td><td>44,000</td></tr>
+      <tr><td>Other reserves</td><td>(7,217)</td><td>(28,173)</td></tr>
+      <tr><td>Treasury shares</td><td>(4,573)</td><td>(4,428)</td></tr>
+      <tr><td>Retained earnings</td><td>238,467</td><td>268,404</td></tr>
+      <tr><td>Total equity attributable to equity holders</td><td>525,853</td><td>532,311</td></tr>
+      <tr><td>Non-controlling interest</td><td>53,108</td><td>50,232</td></tr>
+      <tr><td>Total equity</td><td>578,961</td><td>582,543</td></tr>
+    </tbody>
+  </table>
+</div>
+
 
 <div id="nikeBS" style="display: none;">
   <table class="table table-bordered text-center">
@@ -605,254 +714,254 @@
               </thead>
               <tbody>
                 <tr>
-                  <td contenteditable="false">Assets</td>
-                  <td contenteditable="false"></td>
-                  <td contenteditable="false"></td>
+                  <td>Assets</td>
+                  <td></td>
+                  <td></td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Non-current assets</td>
-                  <td contenteditable="false"></td>
-                  <td contenteditable="false"></td>
+                  <td>Non-current assets</td>
+                  <td></td>
+                  <td></td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Property, plant and equipment</td>
-                  <td contenteditable="false">1,359,201</td>
-                  <td contenteditable="false">1,354,744</td>
+                  <td>Property, plant and equipment</td>
+                  <td>1,359,201</td>
+                  <td>1,354,744</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Goodwill</td>
-                  <td contenteditable="false">120,098</td>
-                  <td contenteditable="false">120,135</td>
+                  <td>Goodwill</td>
+                  <td>120,098</td>
+                  <td>120,135</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Right-of-use assets</td>
-                  <td contenteditable="false">88,228</td>
-                  <td contenteditable="false">87,632</td>
+                  <td>Right-of-use assets</td>
+                  <td>88,228</td>
+                  <td>87,632</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Intangible assets</td>
-                  <td contenteditable="false">13,453</td>
-                  <td contenteditable="false">14,932</td>
+                  <td>Intangible assets</td>
+                  <td>13,453</td>
+                  <td>14,932</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Investment properties</td>
-                  <td contenteditable="false">896,847</td>
-                  <td contenteditable="false">900,742</td>
+                  <td>Investment properties</td>
+                  <td>896,847</td>
+                  <td>900,742</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">
+                  <td>
                     Investments in equity accounted investees
                   </td>
-                  <td contenteditable="false">10,539</td>
-                  <td contenteditable="false">11,332</td>
+                  <td>10,539</td>
+                  <td>11,332</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Long-term receivables</td>
-                  <td contenteditable="false">17,583</td>
-                  <td contenteditable="false">21,556</td>
+                  <td>Long-term receivables</td>
+                  <td>17,583</td>
+                  <td>21,556</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Derivative financial assets</td>
-                  <td contenteditable="false">2,937</td>
-                  <td contenteditable="false">4,277</td>
+                  <td>Derivative financial assets</td>
+                  <td>2,937</td>
+                  <td>4,277</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Deferred tax assets</td>
-                  <td contenteditable="false">5,992</td>
-                  <td contenteditable="false">6,041</td>
+                  <td>Deferred tax assets</td>
+                  <td>5,992</td>
+                  <td>6,041</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Total non-current assets</td>
-                  <td contenteditable="false">2,514,878</td>
-                  <td contenteditable="false">2,521,391</td>
+                  <td>Total non-current assets</td>
+                  <td>2,514,878</td>
+                  <td>2,521,391</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Current assets</td>
-                  <td contenteditable="false"></td>
-                  <td contenteditable="false"></td>
+                  <td>Current assets</td>
+                  <td></td>
+                  <td></td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Inventories</td>
-                  <td contenteditable="false">1,316,726</td>
-                  <td contenteditable="false">1,301,903</td>
+                  <td>Inventories</td>
+                  <td>1,316,726</td>
+                  <td>1,301,903</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Trade and other receivables</td>
-                  <td contenteditable="false">1,173,000</td>
-                  <td contenteditable="false">1,189,975</td>
+                  <td>Trade and other receivables</td>
+                  <td>1,173,000</td>
+                  <td>1,189,975</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Due from related parties</td>
-                  <td contenteditable="false">49,245</td>
-                  <td contenteditable="false">55,734</td>
+                  <td>Due from related parties</td>
+                  <td>49,245</td>
+                  <td>55,734</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Derivative financial assets</td>
-                  <td contenteditable="false">9,870</td>
-                  <td contenteditable="false">7,462</td>
+                  <td>Derivative financial assets</td>
+                  <td>9,870</td>
+                  <td>7,462</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">
+                  <td>
                     Bank deposits with an original maturity of more than three
                     months
                   </td>
-                  <td contenteditable="false">14,667</td>
-                  <td contenteditable="false">41,381</td>
+                  <td>14,667</td>
+                  <td>41,381</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Cash and cash equivalents</td>
-                  <td contenteditable="false">187,407</td>
-                  <td contenteditable="false">239,245</td>
+                  <td>Cash and cash equivalents</td>
+                  <td>187,407</td>
+                  <td>239,245</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Total current assets</td>
-                  <td contenteditable="false">2,750,915</td>
-                  <td contenteditable="false">2,835,700</td>
+                  <td>Total current assets</td>
+                  <td>2,750,915</td>
+                  <td>2,835,700</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Total assets</td>
-                  <td contenteditable="false">5,265,793</td>
-                  <td contenteditable="false">5,357,091</td>
+                  <td>Total assets</td>
+                  <td>5,265,793</td>
+                  <td>5,357,091</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Equity and liabilities</td>
-                  <td contenteditable="false"></td>
-                  <td contenteditable="false"></td>
+                  <td>Equity and liabilities</td>
+                  <td></td>
+                  <td></td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Capital and reserves</td>
-                  <td contenteditable="false"></td>
-                  <td contenteditable="false"></td>
+                  <td>Capital and reserves</td>
+                  <td></td>
+                  <td></td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Share capital</td>
-                  <td contenteditable="false">993,703</td>
-                  <td contenteditable="false">993,703</td>
+                  <td>Share capital</td>
+                  <td>993,703</td>
+                  <td>993,703</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Reserves</td>
-                  <td contenteditable="false">1,222,007</td>
-                  <td contenteditable="false">1,240,552</td>
+                  <td>Reserves</td>
+                  <td>1,222,007</td>
+                  <td>1,240,552</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">
+                  <td>
                     Equity attributable to owners of the Company
                   </td>
-                  <td contenteditable="false">2,215,710</td>
-                  <td contenteditable="false">2,234,255</td>
+                  <td>2,215,710</td>
+                  <td>2,234,255</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Non-controlling interests</td>
-                  <td contenteditable="false">92,594</td>
-                  <td contenteditable="false">134,495</td>
+                  <td>Non-controlling interests</td>
+                  <td>92,594</td>
+                  <td>134,495</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Total equity</td>
-                  <td contenteditable="false">2,308,304</td>
-                  <td contenteditable="false">2,368,750</td>
+                  <td>Total equity</td>
+                  <td>2,308,304</td>
+                  <td>2,368,750</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Non-current liabilities</td>
-                  <td contenteditable="false"></td>
-                  <td contenteditable="false"></td>
+                  <td>Non-current liabilities</td>
+                  <td></td>
+                  <td></td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Islamic bank financing</td>
-                  <td contenteditable="false">242,523</td>
-                  <td contenteditable="false">296,674</td>
+                  <td>Islamic bank financing</td>
+                  <td>242,523</td>
+                  <td>296,674</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">
+                  <td>
                     Interest bearing bank financing
                   </td>
-                  <td contenteditable="false">664,436</td>
-                  <td contenteditable="false">620,998</td>
+                  <td>664,436</td>
+                  <td>620,998</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Due to related parties</td>
-                  <td contenteditable="false">2,159</td>
-                  <td contenteditable="false">2,163</td>
+                  <td>Due to related parties</td>
+                  <td>2,159</td>
+                  <td>2,163</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">
+                  <td>
                     Provision for employees' end of service benefits
                   </td>
-                  <td contenteditable="false">116,899</td>
-                  <td contenteditable="false">118,453</td>
+                  <td>116,899</td>
+                  <td>118,453</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Lease liabilities</td>
-                  <td contenteditable="false">71,529</td>
-                  <td contenteditable="false">67,804</td>
+                  <td>Lease liabilities</td>
+                  <td>71,529</td>
+                  <td>67,804</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Deferred tax liabilities</td>
-                  <td contenteditable="false">26,709</td>
-                  <td contenteditable="false">29,973</td>
+                  <td>Deferred tax liabilities</td>
+                  <td>26,709</td>
+                  <td>29,973</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Total non-current liabilities</td>
-                  <td contenteditable="false">1,124,255</td>
-                  <td contenteditable="false">1,136,065</td>
+                  <td>Total non-current liabilities</td>
+                  <td>1,124,255</td>
+                  <td>1,136,065</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Current liabilities</td>
-                  <td contenteditable="false"></td>
-                  <td contenteditable="false"></td>
+                  <td>Current liabilities</td>
+                  <td></td>
+                  <td></td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Islamic bank financing</td>
-                  <td contenteditable="false">298,263</td>
-                  <td contenteditable="false">317,399</td>
+                  <td>Islamic bank financing</td>
+                  <td>298,263</td>
+                  <td>317,399</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">
+                  <td>
                     Interest bearing bank financing
                   </td>
-                  <td contenteditable="false">547,862</td>
-                  <td contenteditable="false">463,765</td>
+                  <td>547,862</td>
+                  <td>463,765</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Trade and other payables</td>
-                  <td contenteditable="false">767,865</td>
-                  <td contenteditable="false">817,704</td>
+                  <td>Trade and other payables</td>
+                  <td>767,865</td>
+                  <td>817,704</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Due to related parties</td>
-                  <td contenteditable="false">16,656</td>
-                  <td contenteditable="false">44,939</td>
+                  <td>Due to related parties</td>
+                  <td>16,656</td>
+                  <td>44,939</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">
+                  <td>
                     Derivative financial liabilities
                   </td>
-                  <td contenteditable="false">585</td>
-                  <td contenteditable="false">4,296</td>
+                  <td>585</td>
+                  <td>4,296</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Lease liabilities</td>
-                  <td contenteditable="false">32,085</td>
-                  <td contenteditable="false">32,846</td>
+                  <td>Lease liabilities</td>
+                  <td>32,085</td>
+                  <td>32,846</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Provision for taxation</td>
-                  <td contenteditable="false">169,918</td>
-                  <td contenteditable="false">171,327</td>
+                  <td>Provision for taxation</td>
+                  <td>169,918</td>
+                  <td>171,327</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Total current liabilities</td>
-                  <td contenteditable="false">1,833,234</td>
-                  <td contenteditable="false">1,852,276</td>
+                  <td>Total current liabilities</td>
+                  <td>1,833,234</td>
+                  <td>1,852,276</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Total liabilities</td>
-                  <td contenteditable="false">2,957,489</td>
-                  <td contenteditable="false">2,988,341</td>
+                  <td>Total liabilities</td>
+                  <td>2,957,489</td>
+                  <td>2,988,341</td>
                 </tr>
                 <tr>
-                  <td contenteditable="false">Total equity and liabilities</td>
-                  <td contenteditable="false">5,265,793</td>
-                  <td contenteditable="false">5,357,091</td>
+                  <td>Total equity and liabilities</td>
+                  <td>5,265,793</td>
+                  <td>5,357,091</td>
                 </tr>
               </tbody>
             </table>
@@ -949,17 +1058,20 @@
 
 
 
-            <h3 id="scoreHeading">Financial Module Score: 62 / 100</h3>
-            <h3 id="riskCategoryHeading" class="text-warning">
-              Risk Category: Class 3 (Moderate)
-            </h3>
+            <h3 id="scoreHeading">
+  Financial Module Score: <span id="scoreValue"></span> / 100
+</h3>
+<h3 id="riskCategoryHeading" class="text-warning">
+  Risk Category: <span id="riskValue"></span>
+</h3>
+
 
 <br>
 <br>
 
-<div class="alert alert-info mt-3 d-flex align-items-center justify-content-between">
+<div id ="authorityWarningContainer" class="alert alert-info mt-3 d-flex align-items-center justify-content-between" style="display: none;">
   <div id="decisionRuleResult">
-    <strong>Authority Check:</strong> Checking...
+    <strong>Authority Check:</strong> You are RESTRICTED from issuing a decision on this loan. Please escalate to Senior Credit Manager.
   </div>
   <div style="position: relative;">
     <span id="scorecardIcon"
@@ -997,7 +1109,7 @@
   <div class="row mb-3">
     <label class="col-sm-4 col-form-label"><strong>Approved Loan Amount:</strong></label>
     <div class="col-sm-8">
-      <input type="text" id="approvedAmountInput" class="form-control" value="AED 150,000" />
+      <input type="text" id="approvedAmountInput" class="form-control" value="AED 50,000" />
 
     </div>
   </div>
@@ -1086,42 +1198,41 @@
       let editHistory = {};
 
       function toggleEdit(tableId) {
-        let table = document.getElementById(tableId);
-        let cells = table.querySelectorAll("td[contenteditable]");
+  let table = document.getElementById(tableId);
+  let rows = table.querySelectorAll("tbody tr");
+  const isEditing = rows[0].cells[1].isContentEditable; // Check first data cell
 
-        // Toggle contentEditable state
-        const isEditing = cells[0].contentEditable === "true";
-        cells.forEach((cell) => {
-          cell.contentEditable = isEditing ? "false" : "true";
+  for (let row of rows) {
+    // Skip the first column (the description)
+    for (let i = 1; i < row.cells.length; i++) {
+      row.cells[i].contentEditable = isEditing ? "false" : "true";
+      // Optional: add style to show it's editable
+      if (!isEditing) row.cells[i].style.backgroundColor = "#f9fbe7";
+      else row.cells[i].style.backgroundColor = "";
+    }
+  }
+
+  // Show/hide note field
+  document.getElementById(`noteContainer-${tableId}`).style.display = isEditing
+    ? "none"
+    : "block";
+
+  // Store original values for audit if entering edit mode
+  if (!isEditing) {
+    editHistory[tableId] = [];
+    rows.forEach((row, rowIndex) => {
+      for (let colIndex = 1; colIndex < row.cells.length; colIndex++) {
+        editHistory[tableId].push({
+          rowIndex,
+          colIndex,
+          value: row.cells[colIndex].innerText,
         });
-
-        // Show note input when entering edit mode
-        if (!isEditing) {
-          document.getElementById(`noteContainer-${tableId}`).style.display =
-            "block";
-
-          // Capture original values for audit trail
-          editHistory[tableId] = [];
-          const rows = table.querySelectorAll("tbody tr");
-
-          rows.forEach((row, rowIndex) => {
-            const cells = row.querySelectorAll("td");
-            for (let colIndex = 1; colIndex < cells.length; colIndex++) {
-              if (cells[colIndex].isContentEditable) {
-                editHistory[tableId].push({
-                  rowIndex,
-                  colIndex,
-                  value: cells[colIndex].innerText,
-                });
-              }
-            }
-          });
-        } else {
-          // If toggling off edit mode, hide the note input field
-          document.getElementById(`noteContainer-${tableId}`).style.display =
-            "none";
-        }
       }
+    });
+  }
+}
+
+
       function saveTable(tableId) {
         let table = document.getElementById(tableId);
         let cells = table.querySelectorAll("td[contenteditable]");
@@ -1178,6 +1289,16 @@
 	  const profitFile = document.getElementById("profitLoss").files[0];
 const positionFile = document.getElementById("financialPosition").files[0];
 const isNike = profitFile?.name.startsWith("Nike") || positionFile?.name.startsWith("Nike");
+const isBatelco = profitFile?.name.startsWith("Batelco") || positionFile?.name.startsWith("Batelco");
+
+
+if (isBatelco) {
+  document.getElementById("batelcoCompanyInfo").style.display = "table";
+  document.getElementById("rakCompanyInfo").style.display = "none";
+} else {
+  document.getElementById("batelcoCompanyInfo").style.display = "none";
+  document.getElementById("rakCompanyInfo").style.display = "table";
+}
 
           console.log("Form submitted!");
           const profitLoss = document.getElementById("profitLoss").files.length;
@@ -1193,27 +1314,41 @@ const isNike = profitFile?.name.startsWith("Nike") || positionFile?.name.startsW
           document.getElementById("loading").style.display = "block";
           document.getElementById("result").style.display = "none";
 
-document.getElementById("incomePreviewImage").src = isNike
-  ? "Nike_IncomeStatement.png"
-  : "RAKCeramics_IncomeStatement.png";
-
-document.getElementById("balancePreviewImage").src = isNike
-  ? "Nike_BalanceSheet.png"
-  : "RAKCeramics_BalanceSheet.png";
+if (isNike) {
+  document.getElementById("incomePreviewImage").src = "Nike_IncomeStatement.png";
+  document.getElementById("balancePreviewImage").src = "Nike_BalanceSheet.png";
+} else if (isBatelco) {
+  document.getElementById("incomePreviewImage").src = "Batelco_2024IncomeStatement.png";
+  document.getElementById("balancePreviewImage").src = "Batelco_2024BalanceSheet.png";
+} else {
+  document.getElementById("incomePreviewImage").src = "RAKCeramics_IncomeStatement.png";
+  document.getElementById("balancePreviewImage").src = "RAKCeramics_BalanceSheet.png";
+}
 
 // Show images
 document.getElementById("incomePreviewImage").style.display = "block";
 document.getElementById("balancePreviewImage").style.display = "block";
 
           setTimeout(() => {
-if (isNike) {
+if (isBatelco) {
   document.getElementById("financialTable1").style.display = "none";
   document.getElementById("financialTable2").style.display = "none";
+  document.getElementById("nikePL").style.display = "none";
+  document.getElementById("nikeBS").style.display = "none";
+  document.getElementById("batelcoPL").style.display = "block";
+  document.getElementById("batelcoBS").style.display = "block";
+} else if (isNike) {
+  document.getElementById("financialTable1").style.display = "none";
+  document.getElementById("financialTable2").style.display = "none";
+  document.getElementById("batelcoPL").style.display = "none";
+  document.getElementById("batelcoBS").style.display = "none";
   document.getElementById("nikePL").style.display = "block";
   document.getElementById("nikeBS").style.display = "block";
 } else {
   document.getElementById("nikePL").style.display = "none";
   document.getElementById("nikeBS").style.display = "none";
+  document.getElementById("batelcoPL").style.display = "none";
+  document.getElementById("batelcoBS").style.display = "none";
   document.getElementById("financialTable1").style.display = "table";
   document.getElementById("financialTable2").style.display = "table";
 }
@@ -1223,7 +1358,10 @@ if (isNike) {
             document.getElementById("result").style.display = "block";
             updateRatiosFromTables();
 renderApprovalButtons(); // 🔸 Add this
-          }, 10);
+
+// Also trigger when approved amount is changed manually
+document.getElementById("approvedAmountInput").addEventListener("input", renderApprovalButtons);
+          }, 15000);
         });
 
       function colorRatioRowsAccurately() {
@@ -1302,10 +1440,24 @@ renderApprovalButtons(); // 🔸 Add this
         element.classList.add("active");
       }
 
-      function updateRatiosFromTables() {
+function updateRatiosFromTables() {
   const isNike = document.getElementById("nikePL").style.display === "block";
+  const isBatelco = document.getElementById("batelcoPL").style.display === "block";
 
-  const getValue = (tableId, rowLabel) => {
+  // Helper: get number from specified table/row/col
+  function getBatelcoValue(tableId, rowLabel, colIdx) {
+    const rows = document.querySelectorAll(`#${tableId} tbody tr`);
+    for (let row of rows) {
+      const label = row.cells[0]?.innerText.trim().toLowerCase();
+      if (label === rowLabel.toLowerCase()) {
+        // Remove any brackets and commas
+        return parseFloat(row.cells[colIdx]?.innerText.replace(/[(),']/g, '').replace(/,/g, "")) || 0;
+      }
+    }
+    return 0;
+  }
+  // Helper for existing tables (RAK)
+  function getValue(tableId, rowLabel) {
     const tableSelector = isNike
       ? tableId === "financialTable1"
         ? "#nikePL"
@@ -1319,78 +1471,129 @@ renderApprovalButtons(); // 🔸 Add this
       }
     }
     return 0;
-  };
+  }
 
+  // ==== SETUP: What columns to use ====
+  // Batelco: col 1 = 2024, col 2 = 2023
+  const batelco2024 = 1, batelco2023 = 2;
+
+  // Table definitions for each case
   const ratios = [
     {
       metric: "Short Term Liab./Total Assets",
-      numLabel: "Total current liabilities",
-      denomLabel: "Total assets",
-      tableId: "financialTable2",
-      formula: "(Total current liabilities / Total assets)",
+      batelco: {
+        num: () => getBatelcoValue("batelcoBS", "Total current liabilities", batelco2024),
+        denom: () => getBatelcoValue("batelcoBS", "Total assets", batelco2024),
+        formula: "(Total current liabilities / Total assets)"
+      },
+      default: {
+        numLabel: "Total current liabilities",
+        denomLabel: "Total assets",
+        tableId: "financialTable2",
+        formula: "(Total current liabilities / Total assets)"
+      }
     },
     {
       metric: "Net Profit Margin",
-      numLabel: isNike ? "Net income" : "Profit for the period",
-      denomLabel: isNike ? "Revenues" : "Revenue",
-      tableId: "financialTable1",
-      formula: isNike
-        ? "(Net income / Revenues)"
-        : "(Profit for the period / Revenue)",
+      batelco: {
+        num: () => getBatelcoValue("batelcoPL", "Profit for the period", batelco2024),
+        denom: () => getBatelcoValue("batelcoPL", "REVENUE", batelco2024),
+        formula: "(Profit for the period / Revenue)"
+      },
+      default: {
+        numLabel: isNike ? "Net income" : "Profit for the period",
+        denomLabel: isNike ? "Revenues" : "Revenue",
+        tableId: "financialTable1",
+        formula: isNike
+          ? "(Net income / Revenues)"
+          : "(Profit for the period / Revenue)"
+      }
     },
     {
       metric: "Equity / Total Liabilities (t-1)",
-      numLabel: isNike
-        ? "Total shareholders' equity"
-        : "Total equity",
-      denomLabel: "Total liabilities",
-      tableId: "financialTable2",
-      formula: "(Equity / Total liabilities)",
+      batelco: {
+        num: () => getBatelcoValue("batelcoBS", "Total equity", batelco2024),
+        denom: () => getBatelcoValue("batelcoBS", "Total liabilities", batelco2024),
+        formula: "(Total equity / Total liabilities)"
+      },
+      default: {
+        numLabel: isNike
+          ? "Total shareholders' equity"
+          : "Total equity",
+        denomLabel: "Total liabilities",
+        tableId: "financialTable2",
+        formula: "(Equity / Total liabilities)"
+      }
     },
     {
       metric: "Inventories / Current Assets",
-      numLabel: "Inventories",
-      denomLabel: "Total current assets",
-      tableId: "financialTable2",
-      formula: "(Inventories / Total current assets)",
+      batelco: {
+        num: () => getBatelcoValue("batelcoBS", "Inventories", batelco2024),
+        denom: () => getBatelcoValue("batelcoBS", "Total current assets", batelco2024),
+        formula: "(Inventories / Total current assets)"
+      },
+      default: {
+        numLabel: "Inventories",
+        denomLabel: "Total current assets",
+        tableId: "financialTable2",
+        formula: "(Inventories / Total current assets)"
+      }
     },
     {
       metric: "Cash Ratio",
-      numLabel: isNike ? "Cash and equivalents" : "Cash and cash equivalents",
-      denomLabel: "Total current liabilities",
-      tableId: "financialTable2",
-      formula: "(Cash / Current liabilities)",
+      batelco: {
+        num: () => getBatelcoValue("batelcoBS", "Cash and bank balances", batelco2024),
+        denom: () => getBatelcoValue("batelcoBS", "Total current liabilities", batelco2024),
+        formula: "(Cash and bank balances / Total current liabilities)"
+      },
+      default: {
+        numLabel: isNike ? "Cash and equivalents" : "Cash and cash equivalents",
+        denomLabel: "Total current liabilities",
+        tableId: "financialTable2",
+        formula: "(Cash / Current liabilities)"
+      }
     },
     {
       metric: "EBIT / Net Sales",
-      numLabel: isNike
-        ? "Income before income taxes"
-        : "Profit before tax",
-      denomLabel: isNike ? "Revenues" : "Revenue",
-      tableId: "financialTable1",
-      formula: "(EBIT / Revenue)",
-    },
+      batelco: {
+        num: () => getBatelcoValue("batelcoPL", "Profit before taxation", batelco2024),
+        denom: () => getBatelcoValue("batelcoPL", "REVENUE", batelco2024),
+        formula: "(Profit before taxation / Revenue)"
+      },
+      default: {
+        numLabel: isNike
+          ? "Income before income taxes"
+          : "Profit before tax",
+        denomLabel: isNike ? "Revenues" : "Revenue",
+        tableId: "financialTable1",
+        formula: "(EBIT / Revenue)"
+      }
+    }
   ];
 
+  // ===== Update the Ratio Table
   const ratioTable = document.querySelector("#ratios tbody");
   ratioTable.innerHTML = "";
 
   ratios.forEach((r) => {
-    let numerator = getValue(r.tableId, r.numLabel);
-    let denominator = getValue(r.tableId, r.denomLabel);
-
-    // Handle Nike-specific case for Total Liabilities (not directly available)
-    if (r.metric === "Equity / Total Liabilities (t-1)" && isNike) {
-      const totalAssets = getValue("financialTable2", "Total assets");
-      const totalEquity = getValue("financialTable2", "Total shareholders' equity");
-      denominator = totalAssets - totalEquity;
+    let numerator, denominator, value, calcText;
+    if (isBatelco) {
+      numerator = r.batelco.num();
+      denominator = r.batelco.denom();
+      value = denominator !== 0 ? (numerator / denominator).toFixed(4) : "N/A";
+      calcText = `${r.batelco.formula}<br>(${numerator.toLocaleString()} / ${denominator.toLocaleString()})`;
+    } else {
+      numerator = getValue(r.default.tableId, r.default.numLabel);
+      denominator = getValue(r.default.tableId, r.default.denomLabel);
+      // Handle Nike-specific case for Total Liabilities (not directly available)
+      if (r.metric === "Equity / Total Liabilities (t-1)" && isNike) {
+        const totalAssets = getValue("financialTable2", "Total assets");
+        const totalEquity = getValue("financialTable2", "Total shareholders' equity");
+        denominator = totalAssets - totalEquity;
+      }
+      value = denominator !== 0 ? (numerator / denominator).toFixed(4) : "N/A";
+      calcText = `${r.default.formula}<br>(${numerator.toLocaleString()} / ${denominator.toLocaleString()})`;
     }
-
-    const value =
-      denominator !== 0 ? (numerator / denominator).toFixed(4) : "N/A";
-    const calcText = `${
-      r.formula
-    }<br>(${numerator.toLocaleString()} / ${denominator.toLocaleString()})`;
 
     const row = document.createElement("tr");
     row.innerHTML = `
@@ -1401,54 +1604,223 @@ renderApprovalButtons(); // 🔸 Add this
     ratioTable.appendChild(row);
   });
 
+  // ... (rest of your function stays the same)
   populateFinancialHealthTable();
-
   document.querySelectorAll("#financialHealth tbody tr").forEach((row) => {
     row.addEventListener("click", () => {
       const metric = row.cells[0].innerText.trim();
       renderFinancialHealthChart(metric);
     });
   });
-
-updateFinancialModuleScore();
-
+  updateFinancialModuleScore();
 }
 
-     function updateFinancialModuleScore() {
-  const rows = document.querySelectorAll("#ratios tbody tr");
-  const ratioValues = [];
 
-  rows.forEach((row) => {
-    const val = parseFloat(row.cells[1]?.innerText);
-    if (!isNaN(val)) {
-      ratioValues.push(val);
+    function updateFinancialModuleScore() {
+  const isNike = document.getElementById("nikePL").style.display === "block";
+  const isBatelco = document.getElementById("batelcoPL").style.display === "block";
+
+  // Helper to fetch Batelco 2024 values
+  function getBatelcoValue(tableId, rowLabel, colIdx) {
+    const rows = document.querySelectorAll(`#${tableId} tbody tr`);
+    for (let row of rows) {
+      const label = row.cells[0]?.innerText.trim().toLowerCase();
+      if (label === rowLabel.toLowerCase()) {
+        return parseFloat(row.cells[colIdx]?.innerText.replace(/[(),']/g, '').replace(/,/g, "")) || 0;
+      }
+    }
+    return 0;
+  }
+
+  // Helper for default and Nike
+  function getValue(tableId, rowLabel, yearCol) {
+    const tableSelector = isNike
+      ? tableId === "financialTable1"
+        ? "#nikePL"
+        : "#nikeBS"
+      : `#${tableId}`;
+    const rows = document.querySelectorAll(`${tableSelector} tbody tr`);
+    for (let row of rows) {
+      const label = row.cells[0]?.innerText.trim().toLowerCase();
+      if (label === rowLabel.toLowerCase()) {
+        return parseFloat(row.cells[yearCol]?.innerText.replace(/,/g, "")) || 0;
+      }
+    }
+    return 0;
+  }
+
+  // Prepare ratios (using only 2024 values)
+  let ratioValues = [];
+
+  if (isBatelco) {
+    // Batelco, always column 2 (2024)
+    const idx2024 = 1;
+    ratioValues = [
+      // Short Term Liab./Total Assets
+      (() => {
+        const num = getBatelcoValue("batelcoBS", "Total current liabilities", idx2024);
+        const denom = getBatelcoValue("batelcoBS", "Total assets", idx2024);
+        return denom !== 0 ? num / denom : NaN;
+      })(),
+      // Net Profit Margin
+      (() => {
+        const num = getBatelcoValue("batelcoPL", "Profit for the period", idx2024);
+        const denom = getBatelcoValue("batelcoPL", "REVENUE", idx2024);
+        return denom !== 0 ? num / denom : NaN;
+      })(),
+      // Equity / Total Liabilities
+      (() => {
+        const num = getBatelcoValue("batelcoBS", "Total equity", idx2024);
+        const denom = getBatelcoValue("batelcoBS", "Total liabilities", idx2024);
+        return denom !== 0 ? num / denom : NaN;
+      })(),
+      // Inventories / Current Assets
+      (() => {
+        const num = getBatelcoValue("batelcoBS", "Inventories", idx2024);
+        const denom = getBatelcoValue("batelcoBS", "Total current assets", idx2024);
+        return denom !== 0 ? num / denom : NaN;
+      })(),
+      // Cash Ratio
+      (() => {
+        const num = getBatelcoValue("batelcoBS", "Cash and bank balances", idx2024);
+        const denom = getBatelcoValue("batelcoBS", "Total current liabilities", idx2024);
+        return denom !== 0 ? num / denom : NaN;
+      })(),
+      // EBIT / Net Sales
+      (() => {
+        const num = getBatelcoValue("batelcoPL", "Profit before taxation", idx2024);
+        const denom = getBatelcoValue("batelcoPL", "REVENUE", idx2024);
+        return denom !== 0 ? num / denom : NaN;
+      })()
+    ];
+  } else if (isNike) {
+    // Nike, column 2 = 2024
+    ratioValues = [
+      (() => {
+        const num = getValue("financialTable2", "Total current liabilities", 1);
+        const denom = getValue("financialTable2", "Total assets", 1);
+        return denom !== 0 ? num / denom : NaN;
+      })(),
+      (() => {
+        const num = getValue("financialTable1", "Net income", 1);
+        const denom = getValue("financialTable1", "Revenues", 1);
+        return denom !== 0 ? num / denom : NaN;
+      })(),
+      (() => {
+        const equity = getValue("financialTable2", "Total shareholders' equity", 1);
+        const assets = getValue("financialTable2", "Total assets", 1);
+        const liab = assets - equity;
+        return liab !== 0 ? equity / liab : NaN;
+      })(),
+      (() => {
+        const num = getValue("financialTable2", "Inventories", 1);
+        const denom = getValue("financialTable2", "Total current assets", 1);
+        return denom !== 0 ? num / denom : NaN;
+      })(),
+      (() => {
+        const num = getValue("financialTable2", "Cash and equivalents", 1);
+        const denom = getValue("financialTable2", "Total current liabilities", 1);
+        return denom !== 0 ? num / denom : NaN;
+      })(),
+      (() => {
+        const num = getValue("financialTable1", "Income before income taxes", 1);
+        const denom = getValue("financialTable1", "Revenues", 1);
+        return denom !== 0 ? num / denom : NaN;
+      })()
+    ];
+  } else {
+    // Default: RAK Ceramics (column 2 = 2024)
+    ratioValues = [
+      (() => {
+        const num = getValue("financialTable2", "Total current liabilities", 1);
+        const denom = getValue("financialTable2", "Total assets", 1);
+        return denom !== 0 ? num / denom : NaN;
+      })(),
+      (() => {
+        const num = getValue("financialTable1", "Profit for the period", 1);
+        const denom = getValue("financialTable1", "Revenue", 1);
+        return denom !== 0 ? num / denom : NaN;
+      })(),
+      (() => {
+        const num = getValue("financialTable2", "Total equity", 1);
+        const denom = getValue("financialTable2", "Total liabilities", 1);
+        return denom !== 0 ? num / denom : NaN;
+      })(),
+      (() => {
+        const num = getValue("financialTable2", "Inventories", 1);
+        const denom = getValue("financialTable2", "Total current assets", 1);
+        return denom !== 0 ? num / denom : NaN;
+      })(),
+      (() => {
+        const num = getValue("financialTable2", "Cash and cash equivalents", 1);
+        const denom = getValue("financialTable2", "Total current liabilities", 1);
+        return denom !== 0 ? num / denom : NaN;
+      })(),
+      (() => {
+        const num = getValue("financialTable1", "Profit before tax", 1);
+        const denom = getValue("financialTable1", "Revenue", 1);
+        return denom !== 0 ? num / denom : NaN;
+      })()
+    ];
+  }
+
+  // --- Score calculation ---
+  let score = 0;
+  let count = 0;
+  ratioValues.forEach((v, i) => {
+    if (isNaN(v)) return; // skip missing ratios
+    count += 1;
+    // Use your own scoring thresholds
+    switch (i) {
+      // Short Term Liab./Total Assets
+      case 0:
+        if (v < 0.4) score += 15;
+        else if (v < 0.64) score += 10;
+        else score += 5;
+        break;
+      // Net Profit Margin
+      case 1:
+        if (v > 0.1) score += 15;
+        else if (v > 0.05) score += 10;
+        else score += 5;
+        break;
+      // Equity / Total Liabilities
+      case 2:
+        if (v > 0.25) score += 15;
+        else if (v > 0.05) score += 10;
+        else score += 5;
+        break;
+      // Inventories / Current Assets
+      case 3:
+        if (v > 0.15) score += 15;
+        else if (v > 0.07) score += 10;
+        else score += 5;
+        break;
+      // Cash Ratio
+      case 4:
+        if (v > 0.15) score += 15;
+        else score += 5;
+        break;
+      // EBIT / Net Sales
+      case 5:
+        if (v > 0.1) score += 15;
+        else score += 5;
+        break;
     }
   });
 
-  if (ratioValues.length === 0) {
-    document.getElementById("scoreValue").innerText = "N/A";
-    document.getElementById("riskValue").innerText = "N/A";
-    return;
-  }
+  const maxScore = count * 15;
+  const finalScore = count > 0 ? Math.round((score / maxScore) * 100) : "N/A";
 
-  // 🎯 Basic scoring logic (customize this logic if needed)
-  let score = 0;
-  ratioValues.forEach((v) => {
-    if (v >= 0.3) score += 15;
-    else if (v >= 0.15) score += 10;
-    else if (v > 0) score += 5;
-  });
-
-  const maxScore = ratioValues.length * 15;
-  const finalScore = Math.round((score / maxScore) * 100);
-
-  // 🏷 Risk Category Buckets
+  // --- Risk Category
   let category = "Class 1 (Low Risk)";
-  if (finalScore < 30) category = "Class 5 (Very High Risk)";
+  if (finalScore === "N/A") category = "N/A";
+  else if (finalScore < 30) category = "Class 5 (Very High Risk)";
   else if (finalScore < 50) category = "Class 4 (High Risk)";
   else if (finalScore < 70) category = "Class 3 (Moderate Risk)";
   else if (finalScore < 85) category = "Class 2 (Mild Risk)";
 
+  // --- Display
   document.getElementById("scoreValue").innerText = finalScore;
   document.getElementById("riskValue").innerText = category;
 }
@@ -1480,7 +1852,7 @@ function recordLoanDecision(status) {
   const allTable = document.querySelector("#allRequestsTable tbody");
   const newId = allTable.rows.length + 1;
   const newReqRow = document.createElement("tr");
-  newReqRow.innerHTML = `<td>${newId}</td><td>RAK Ceramics P.J.S.C.</td><td>${status}</td>`;
+  newReqRow.innerHTML = `<td>${newId}</td><td>Batelco B.S.C.</td><td>${status}</td>`;
   allTable.appendChild(newReqRow);
 
   alert(`Loan decision "${status}" recorded successfully.`);
@@ -1526,8 +1898,21 @@ function switchLeftTab(tabName) {
 
 function populateFinancialHealthTable() {
   const isNike = document.getElementById("nikePL").style.display === "block";
+  const isBatelco = document.getElementById("batelcoPL").style.display === "block";
 
-  const getValue = (tableId, rowLabel, yearCol) => {
+  // For Batelco: col 1 = 2024, col 2 = 2023
+  function getBatelcoValue(tableId, rowLabel, colIdx) {
+    const rows = document.querySelectorAll(`#${tableId} tbody tr`);
+    for (let row of rows) {
+      const label = row.cells[0]?.innerText.trim().toLowerCase();
+      if (label === rowLabel.toLowerCase()) {
+        return parseFloat(row.cells[colIdx]?.innerText.replace(/[(),']/g, '').replace(/,/g, "")) || 0;
+      }
+    }
+    return 0;
+  }
+
+  function getValue(tableId, rowLabel, yearCol) {
     const tableSelector = isNike
       ? tableId === "financialTable1"
         ? "#nikePL"
@@ -1541,76 +1926,144 @@ function populateFinancialHealthTable() {
       }
     }
     return 0;
-  };
-
-  const metrics = [
-    {
-      metric: "Short Term Liab./Total Assets",
-      numLabel: "Total current liabilities",
-      denomLabel: "Total assets",
-      tableId: "financialTable2",
-    },
-    {
-      metric: "Net Profit Margin",
-      numLabel: isNike ? "Net income" : "Profit for the period",
-      denomLabel: isNike ? "Revenues" : "Revenue",
-      tableId: "financialTable1",
-    },
-    {
-      metric: "Equity / Total Liabilities (t-1)",
-      numLabel: isNike ? "Total shareholders' equity" : "Total equity",
-      denomLabel: "Total liabilities", // computed for Nike
-      tableId: "financialTable2",
-    },
-    {
-      metric: "Inventories / Current Assets",
-      numLabel: "Inventories",
-      denomLabel: "Total current assets",
-      tableId: "financialTable2",
-    },
-    {
-      metric: "Cash Ratio",
-      numLabel: isNike ? "Cash and equivalents" : "Cash and cash equivalents",
-      denomLabel: "Total current liabilities",
-      tableId: "financialTable2",
-    },
-    {
-      metric: "EBIT / Net Sales",
-      numLabel: isNike
-        ? "Income before income taxes"
-        : "Profit before tax",
-      denomLabel: isNike ? "Revenues" : "Revenue",
-      tableId: "financialTable1",
-    },
-  ];
+  }
 
   const healthTable = document.querySelector("#financialHealth tbody");
   healthTable.innerHTML = "";
 
+  // Cols for Batelco and others
+  const idx2024 = 1, idx2023 = 2;
+
+  const metrics = [
+    {
+      metric: "Short Term Liab./Total Assets",
+      batelco: {
+        num: () => getBatelcoValue("batelcoBS", "Total current liabilities", idx2024),
+        denom: () => getBatelcoValue("batelcoBS", "Total assets", idx2024),
+        num2023: () => getBatelcoValue("batelcoBS", "Total current liabilities", idx2023),
+        denom2023: () => getBatelcoValue("batelcoBS", "Total assets", idx2023)
+      },
+      default: {
+        numLabel: "Total current liabilities",
+        denomLabel: "Total assets",
+        tableId: "financialTable2"
+      }
+    },
+    {
+      metric: "Net Profit Margin",
+      batelco: {
+        num: () => getBatelcoValue("batelcoPL", "Profit for the period", idx2024),
+        denom: () => getBatelcoValue("batelcoPL", "REVENUE", idx2024),
+        num2023: () => getBatelcoValue("batelcoPL", "Profit for the period", idx2023),
+        denom2023: () => getBatelcoValue("batelcoPL", "REVENUE", idx2023)
+      },
+      default: {
+        numLabel: isNike ? "Net income" : "Profit for the period",
+        denomLabel: isNike ? "Revenues" : "Revenue",
+        tableId: "financialTable1"
+      }
+    },
+    {
+      metric: "Equity / Total Liabilities (t-1)",
+      batelco: {
+        num: () => getBatelcoValue("batelcoBS", "Total equity", idx2024),
+        denom: () => getBatelcoValue("batelcoBS", "Total liabilities", idx2024),
+        num2023: () => getBatelcoValue("batelcoBS", "Total equity", idx2023),
+        denom2023: () => getBatelcoValue("batelcoBS", "Total liabilities", idx2023)
+      },
+      default: {
+        numLabel: isNike ? "Total shareholders' equity" : "Total equity",
+        denomLabel: "Total liabilities",
+        tableId: "financialTable2"
+      }
+    },
+    {
+      metric: "Inventories / Current Assets",
+      batelco: {
+        num: () => getBatelcoValue("batelcoBS", "Inventories", idx2024),
+        denom: () => getBatelcoValue("batelcoBS", "Total current assets", idx2024),
+        num2023: () => getBatelcoValue("batelcoBS", "Inventories", idx2023),
+        denom2023: () => getBatelcoValue("batelcoBS", "Total current assets", idx2023)
+      },
+      default: {
+        numLabel: "Inventories",
+        denomLabel: "Total current assets",
+        tableId: "financialTable2"
+      }
+    },
+    {
+      metric: "Cash Ratio",
+      batelco: {
+        num: () => getBatelcoValue("batelcoBS", "Cash and bank balances", idx2024),
+        denom: () => getBatelcoValue("batelcoBS", "Total current liabilities", idx2024),
+        num2023: () => getBatelcoValue("batelcoBS", "Cash and bank balances", idx2023),
+        denom2023: () => getBatelcoValue("batelcoBS", "Total current liabilities", idx2023)
+      },
+      default: {
+        numLabel: isNike ? "Cash and equivalents" : "Cash and cash equivalents",
+        denomLabel: "Total current liabilities",
+        tableId: "financialTable2"
+      }
+    },
+    {
+      metric: "EBIT / Net Sales",
+      batelco: {
+        num: () => getBatelcoValue("batelcoPL", "Profit before taxation", idx2024),
+        denom: () => getBatelcoValue("batelcoPL", "REVENUE", idx2024),
+        num2023: () => getBatelcoValue("batelcoPL", "Profit before taxation", idx2023),
+        denom2023: () => getBatelcoValue("batelcoPL", "REVENUE", idx2023)
+      },
+      default: {
+        numLabel: isNike ? "Income before income taxes" : "Profit before tax",
+        denomLabel: isNike ? "Revenues" : "Revenue",
+        tableId: "financialTable1"
+      }
+    }
+  ];
+
   metrics.forEach((r) => {
     let val2024, val2023;
 
-    if (r.metric === "Equity / Total Liabilities (t-1)" && isNike) {
-      const equity2024 = getValue(r.tableId, r.numLabel, 1);
-      const equity2023 = getValue(r.tableId, r.numLabel, 2);
-      const assets2024 = getValue("financialTable2", "Total assets", 1);
-      const assets2023 = getValue("financialTable2", "Total assets", 2);
-      const liab2024 = assets2024 - equity2024;
-      const liab2023 = assets2023 - equity2023;
-      val2024 = liab2024 !== 0 ? equity2024 / liab2024 : NaN;
-      val2023 = liab2023 !== 0 ? equity2023 / liab2023 : NaN;
+    if (isBatelco) {
+      // Calculate for Batelco
+      const num2024 = r.batelco.num();
+      const denom2024 = r.batelco.denom();
+      const num2023 = r.batelco.num2023();
+      const denom2023 = r.batelco.denom2023();
+      val2024 = denom2024 !== 0 ? num2024 / denom2024 : NaN;
+      val2023 = denom2023 !== 0 ? num2023 / denom2023 : NaN;
+    } else if (isNike) {
+      // Handle Nike case (special for equity/liabilities)
+      if (r.metric === "Equity / Total Liabilities (t-1)") {
+        const equity2024 = getValue(r.default.tableId, r.default.numLabel, 1);
+        const equity2023 = getValue(r.default.tableId, r.default.numLabel, 2);
+        const assets2024 = getValue("financialTable2", "Total assets", 1);
+        const assets2023 = getValue("financialTable2", "Total assets", 2);
+        const liab2024 = assets2024 - equity2024;
+        const liab2023 = assets2023 - equity2023;
+        val2024 = liab2024 !== 0 ? equity2024 / liab2024 : NaN;
+        val2023 = liab2023 !== 0 ? equity2023 / liab2023 : NaN;
+      } else {
+        const num2024 = getValue(r.default.tableId, r.default.numLabel, 1);
+        const denom2024 = getValue(r.default.tableId, r.default.denomLabel, 1);
+        const num2023 = getValue(r.default.tableId, r.default.numLabel, 2);
+        const denom2023 = getValue(r.default.tableId, r.default.denomLabel, 2);
+        val2024 = denom2024 !== 0 ? num2024 / denom2024 : NaN;
+        val2023 = denom2023 !== 0 ? num2023 / denom2023 : NaN;
+      }
     } else {
-      const num2024 = getValue(r.tableId, r.numLabel, 1);
-      const denom2024 = getValue(r.tableId, r.denomLabel, 1);
-      const num2023 = getValue(r.tableId, r.numLabel, 2);
-      const denom2023 = getValue(r.tableId, r.denomLabel, 2);
+      // Default (RAK)
+      const num2024 = getValue(r.default.tableId, r.default.numLabel, 1);
+      const denom2024 = getValue(r.default.tableId, r.default.denomLabel, 1);
+      const num2023 = getValue(r.default.tableId, r.default.numLabel, 2);
+      const denom2023 = getValue(r.default.tableId, r.default.denomLabel, 2);
       val2024 = denom2024 !== 0 ? num2024 / denom2024 : NaN;
       val2023 = denom2023 !== 0 ? num2023 / denom2023 : NaN;
     }
 
-    const diff = (val2024 - val2023) / val2023 * 100;
-    const diffStr = isNaN(diff) ? "N/A" : diff.toFixed(2) + "%";
-    const diffClass = diff > 0 ? "text-success" : "text-danger";
+    const diff = (val2024 - val2023) / Math.abs(val2023) * 100;
+    const diffStr = isNaN(diff) ? "N/A" : (diff > 0 ? "+" : "") + diff.toFixed(2) + "%";
+    const diffClass = diff > 0 ? "text-success" : (diff < 0 ? "text-danger" : "");
 
     const row = document.createElement("tr");
     row.innerHTML = `
@@ -1620,7 +2073,7 @@ function populateFinancialHealthTable() {
       <td class="${diffClass}">${diffStr}</td>
     `;
 
-    // enable chart update on click
+    // Enable chart update on click
     row.addEventListener("click", () => {
       renderFinancialHealthChart(r.metric, val2023, val2024);
     });
@@ -1713,44 +2166,34 @@ setTimeout(() => {
 
 function renderApprovalButtons() {
   const container = document.getElementById("buttonContainer");
-  const score = parseInt(document.getElementById("scoreHeading").innerText.match(/\d+/)[0]);
+  const approvedAmountStr = document.getElementById("approvedAmountInput").value || "";
+  const approvedAmount = parseInt(approvedAmountStr.replace(/[^\d]/g, ""));
+
+  const warning = document.getElementById("authorityWarningContainer");
+
   container.innerHTML = "";
 
-  if (score > 60) {
+  if (approvedAmount <= 50000) {
+    warning.classList.add("d-none"); // Hide using Bootstrap
     container.innerHTML = `
       <button class="btn btn-success me-2" onclick="recordLoanDecision('Approved')">Proceed with Approval?</button>
       <button class="btn btn-danger" onclick="recordLoanDecision('Rejected')">Reject Decision</button>
     `;
   } else {
-    const forwardBtn = document.createElement("button");
-    forwardBtn.className = "btn";
-    forwardBtn.style.backgroundColor = "#FFD700"; // goldenish
-    forwardBtn.style.color = "#000";
-    forwardBtn.innerText = "Send for Credit Risk Manager's Approval";
-    forwardBtn.onclick = () => recordLoanDecision("Escalated to Credit Risk Manager");
-    container.appendChild(forwardBtn);
+    warning.classList.remove("d-none"); // Show using Bootstrap
+    // No buttons
   }
+
 }
 
-function evaluateDecisionAuthority(role, amount, riskScore) {
-  const resultEl = document.getElementById("decisionRuleResult");
+renderApprovalButtons();
 
-  if (role === "Junior Credit Underwriter") {
-    if (amount < 5000000 && riskScore > 60) {
-      resultEl.innerHTML = `<strong>Authority Check:</strong> You are <span class="text-success">ALLOWED</span> to make a decision for this loan.`;
-    } else {
-      resultEl.innerHTML = `<strong>Authority Check:</strong> You are <span class="text-danger">RESTRICTED</span> from making a decision. Please escalate to Credit Risk Manager.`;
-    }
-  } else {
-    resultEl.innerHTML = `<strong>Authority Check:</strong> As a <strong>${role}</strong>, you are <span class="text-success">AUTHORIZED</span>.`;
-  }
-}
+
 
 const role = "Junior Credit Underwriter"; // Replace with actual user role if available
 const amount = 15000000; // Replace with actual requested loan amount
 const score = parseInt(document.getElementById("scoreHeading").innerText.match(/\d+/)[0]);
 
-evaluateDecisionAuthority(role, amount, score);
 
 const scorecardHTML = `
   <table class='table table-bordered text-center mb-0'>
@@ -1791,6 +2234,14 @@ scorecardIcon.setAttribute("data-bs-content", scorecardPopoverHTML);
 
 // ❌ DO NOT set scorecardIcon.setAttribute("title", ...)
 new bootstrap.Popover(scorecardIcon);
+
+// At the END of your <script> section, add:
+document.addEventListener("DOMContentLoaded", function() {
+  renderApprovalButtons();
+
+  // Also listen for changes if someone types before any upload
+  document.getElementById("approvedAmountInput").addEventListener("input", renderApprovalButtons);
+});
 
 
     </script>
