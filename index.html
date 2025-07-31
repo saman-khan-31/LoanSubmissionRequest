@@ -140,20 +140,6 @@
       .tab-content.active {
         display: block;
       }
-
-      #batelcoPL, #batelcoBS, #nikePL, #nikeBS {
-  display: none !important;
-  visibility: hidden !important;
-  height: 0 !important;
-  overflow: hidden !important;
-}
-
-button[onclick*="batelcoPLTable"], 
-button[onclick*="batelcoBSTable"] {
-  display: none !important;
-}
-
-
     </style>
   </head>
   <body>
@@ -318,7 +304,6 @@ button[onclick*="batelcoBSTable"] {
             <h3 class="preview-heading">
               Preview: Statement of Financial Position
             <div class="text-center">
-              
   <img id="balancePreviewImage" src="" class="img-fluid my-2 preview-img" style="display: none;" />
 </div>
 
@@ -329,8 +314,6 @@ button[onclick*="batelcoBSTable"] {
             <h3 class="preview-heading">
               Extracted Financial Information: Statement of Profit & Loss
             </h3>
-            <div id="plExtractedTableContainer" class="table-responsive my-3"></div>
-
             <button
               class="btn btn-warning edit-btn"
               onclick="toggleEdit('batelcoPLTable')"
@@ -399,7 +382,7 @@ button[onclick*="batelcoBSTable"] {
 </div>
 
 
-	<!-- Nike Profit & Loss Table -->
+      <!-- Nike Profit & Loss Table -->
 <div id="nikePL" style="display: none;">
   <table class="table table-bordered text-center">
     <thead>
@@ -588,8 +571,6 @@ button[onclick*="batelcoBSTable"] {
             <h3 class="preview-heading">
               Extracted Financial Information: Statement of Financial Position
             </h3>
-            <div id="bsExtractedTableContainer" class="table-responsive my-3"></div>
-
             <button
               class="btn btn-warning edit-btn"
               onclick="toggleEdit('batelcoBSTable')"
@@ -1214,160 +1195,6 @@ button[onclick*="batelcoBSTable"] {
     </div>
 
     <script>
-
-
-
-const AZURE_ENDPOINT = "https://lendingdemo1.cognitiveservices.azure.com/";
-const AZURE_KEY = "CjKVbMGtY8AFu8UqgSm59MtUCbPyszL6uDr84dGEFmdZE0i1ODYZJQQJ99ALACYeBjFXJ3w3AAALACOG4jD7";
-
-async function extractTableFromAzure(file) {
-    const url = `${AZURE_ENDPOINT}formrecognizer/documentModels/prebuilt-layout:analyze?api-version=2023-07-31`;
-    const response = await fetch(url, {
-        method: "POST",
-        headers: { "Ocp-Apim-Subscription-Key": AZURE_KEY, "Content-Type": "application/pdf" },
-        body: file
-    });
-
-    if (!response.ok) throw new Error("Failed to send to Azure");
-    const resultUrl = response.headers.get("operation-location");
-
-    // Poll for result
-    let result;
-    do {
-        await new Promise(r => setTimeout(r, 2000));
-        const res = await fetch(resultUrl, { headers: { "Ocp-Apim-Subscription-Key": AZURE_KEY } });
-        result = await res.json();
-    } while (result.status === "running" || result.status === "notStarted");
-
-    return result;
-}
-
-function convertAzureTablesToHTML(analysisResult) {
-    let html = "<table class='table table-bordered text-center'>";  // ✅ ensure starts with table
-
-    analysisResult?.analyzeResult?.tables?.forEach(table => {
-        const maxCols = Math.max(...table.cells.map(c => c.columnIndex)) + 1;
-
-        html += "<thead><tr>";
-        for (let c = 0; c < maxCols; c++) html += `<th>Column ${c + 1}</th>`;
-        html += "</tr></thead><tbody>";
-
-        const maxRows = Math.max(...table.cells.map(c => c.rowIndex));
-        for (let r = 0; r <= maxRows; r++) {
-            html += "<tr>";
-            for (let c = 0; c < maxCols; c++) {
-                const cell = table.cells.find(cc => cc.rowIndex === r && cc.columnIndex === c);
-                html += `<td>${cell ? cell.content : ""}</td>`;
-            }
-            html += "</tr>";
-        }
-        html += "</tbody>";
-    });
-
-    html += "</table>"; // ✅ close table properly
-    return html;
-}
-
-const ALT_NAMES = {
-    revenue: ["revenue", "revenues", "net sales", "sales", "turnover"],
-    profitForPeriod: ["profit for the period", "net income", "net earnings", "profit attributable", "earnings"],
-    profitBeforeTax: ["profit before tax", "profit before taxation", "income before income tax", "ebit"],
-    totalAssets: ["total assets"],
-    totalEquity: ["total equity"], // ✅ removed equity attributable to avoid mismatch
-    totalLiabilities: ["total liabilities"],
-    totalCurrentLiabilities: ["total current liabilities"], // ✅ avoid partial match with non-current
-    totalCurrentAssets: ["total current assets"], // ✅ added for inventories ratio
-    inventories: ["inventories", "inventory", "stock"],
-    cashAndCash: ["cash and cash equivalents", "cash equivalents", "cash and bank balances"]
-};
-
-
-
-function getValueFromTable(containerId, altNames) {
-    const container = document.getElementById(containerId);
-    if (!container) return 0;
-
-    const rows = container.querySelectorAll("table tr");
-    for (let row of rows) {
-        const cells = Array.from(row.cells);
-        if (cells.length < 3) continue;
-
-        const rowText = cells[0].innerText.toLowerCase().trim();
-        if (altNames.some(name => rowText.startsWith(name))) { // ✅ strict startsWith
-            const clean = cells[2].innerText.replace(/[^0-9.-]/g, "");
-            const num = parseFloat(clean);
-            if (!isNaN(num)) return num;
-        }
-    }
-    return 0;
-}
-
-
-
-
-
-
-
-
-
-
-function updateRatiosFromExtractedTables() {
-    const revenue = getValueFromTable("plExtractedTableContainer", ALT_NAMES.revenue);
-    const profitForPeriod = getValueFromTable("plExtractedTableContainer", ALT_NAMES.profitForPeriod);
-    const profitBeforeTax = getValueFromTable("plExtractedTableContainer", ALT_NAMES.profitBeforeTax);
-
-    const totalAssets = getValueFromTable("bsExtractedTableContainer", ALT_NAMES.totalAssets);
-    const totalEquity = getValueFromTable("bsExtractedTableContainer", ALT_NAMES.totalEquity);
-    const totalLiabilities = getValueFromTable("bsExtractedTableContainer", ALT_NAMES.totalLiabilities);
-    const totalCurrentLiabilities = getValueFromTable("bsExtractedTableContainer", ALT_NAMES.totalCurrentLiabilities);
-    const inventories = getValueFromTable("bsExtractedTableContainer", ALT_NAMES.inventories);
-    const cash = getValueFromTable("bsExtractedTableContainer", ALT_NAMES.cashAndCash);
-
-    const ratios = [
-        {
-            metric: "Short Term Liab./Total Assets",
-            value: (totalCurrentLiabilities / totalAssets).toFixed(4),
-            calc: `Total Current Liabilities / Total Assets (${totalCurrentLiabilities.toLocaleString()} / ${totalAssets.toLocaleString()})`
-        },
-        {
-            metric: "Net Profit Margin",
-            value: (profitForPeriod / revenue).toFixed(4),
-            calc: `Profit for the Period / Revenue (${profitForPeriod.toLocaleString()} / ${revenue.toLocaleString()})`
-        },
-        {
-            metric: "Equity / Total Liabilities (t-1)",
-            value: (totalEquity / totalLiabilities).toFixed(4),
-            calc: `Total Equity / Total Liabilities (${totalEquity.toLocaleString()} / ${totalLiabilities.toLocaleString()})`
-        },
-        {
-    metric: "Inventories / Current Assets",
-    value: (inventories / totalCurrentAssets).toFixed(4),
-    calc: `Inventories / Total Current Assets (${inventories.toLocaleString()} / ${totalCurrentAssets.toLocaleString()})`
-}
-,
-        {
-            metric: "Cash Ratio",
-            value: (cash / totalCurrentLiabilities).toFixed(4),
-            calc: `Cash and Cash Equivalents / Total Current Liabilities (${cash.toLocaleString()} / ${totalCurrentLiabilities.toLocaleString()})`
-        },
-        {
-            metric: "EBIT / Net Sales",
-            value: (profitBeforeTax / revenue).toFixed(4),
-            calc: `Profit Before Tax / Revenue (${profitBeforeTax.toLocaleString()} / ${revenue.toLocaleString()})`
-        }
-    ];
-
-    const tbody = document.querySelector("#ratios tbody");
-    tbody.innerHTML = "";
-    ratios.forEach(r => {
-        tbody.innerHTML += `<tr><td>${r.metric}</td><td>${r.value}</td><td>${r.calc}</td></tr>`;
-    });
-}
-
-
-
-
-
       let editHistory = {};
 
       function toggleEdit(tableId) {
@@ -1418,7 +1245,7 @@ function updateRatiosFromExtractedTables() {
         alert("Table data saved!");
 
         // 🔄 Refresh ratios after saving table
-        //updateRatiosFromTables();
+        updateRatiosFromTables();
 
         // 🎨 Recolor the ratios table
         setTimeout(() => colorRatioRowsAccurately(), 100); // slight delay ensures DOM is ready
@@ -1455,51 +1282,87 @@ function updateRatiosFromExtractedTables() {
         document.getElementById(`noteInput-${tableId}`).value = "";
       }
 
-      document.getElementById("loanForm").addEventListener("submit", async (event) => {
-    event.preventDefault();
-
-    const profitFile = document.getElementById("profitLoss").files[0];
-    const positionFile = document.getElementById("financialPosition").files[0];
-    if (!profitFile || !positionFile) {
-        alert("Please upload both files.");
-        return;
-    }
-
-    document.getElementById("loading").style.display = "block";
-    document.getElementById("result").style.display = "none";
-
-    try {
-        // ✅ Extract P&L
-        const plResult = await extractTableFromAzure(profitFile);
-        const plHTML = convertAzureTablesToHTML(plResult);
-        document.getElementById("plExtractedTableContainer").innerHTML = plHTML;
-
-        // ✅ Extract Balance Sheet
-        const bsResult = await extractTableFromAzure(positionFile);
-        const bsHTML = convertAzureTablesToHTML(bsResult);
-        document.getElementById("bsExtractedTableContainer").innerHTML = bsHTML;
+      document
+        .getElementById("loanForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+        const profitFile = document.getElementById("profitLoss").files[0];
+const positionFile = document.getElementById("financialPosition").files[0];
+const isNike = profitFile?.name.startsWith("Nike") || positionFile?.name.startsWith("Nike");
+const isBatelco = profitFile?.name.startsWith("Batelco") || positionFile?.name.startsWith("Batelco");
 
 
-        // ✅ Hide static hardcoded tables after extraction
-document.getElementById("batelcoPL").style.display = "none";
-document.getElementById("batelcoBS").style.display = "none";
-document.getElementById("nikePL").style.display = "none";
-document.getElementById("nikeBS").style.display = "none";
+if (isBatelco) {
+  document.getElementById("batelcoCompanyInfo").style.display = "table";
+  document.getElementById("rakCompanyInfo").style.display = "none";
+} else {
+  document.getElementById("batelcoCompanyInfo").style.display = "none";
+  document.getElementById("rakCompanyInfo").style.display = "table";
+}
 
-        // ✅ Show results and calculate ratios only now
-        document.getElementById("loading").style.display = "none";
-        document.getElementById("result").style.display = "block";
+          console.log("Form submitted!");
+          const profitLoss = document.getElementById("profitLoss").files.length;
+          const financialPosition =
+            document.getElementById("financialPosition").files.length;
 
-        // ✅ Trigger ratios calculation only after both tables are ready
-        updateRatiosFromExtractedTables();
+          if (profitLoss === 0 || financialPosition === 0) {
+            alert("Please upload both required PDF documents.");
+            return;
+          }
 
-    } catch (err) {
-        alert("Error extracting tables: " + err.message);
-        document.getElementById("loading").style.display = "none";
-    }
-});
+          console.log("Files uploaded successfully.");
+          document.getElementById("loading").style.display = "block";
+          document.getElementById("result").style.display = "none";
 
+if (isNike) {
+  document.getElementById("incomePreviewImage").src = "Nike_IncomeStatement.png";
+  document.getElementById("balancePreviewImage").src = "Nike_BalanceSheet.png";
+} else if (isBatelco) {
+  document.getElementById("incomePreviewImage").src = "Batelco_2024IncomeStatement.png";
+  document.getElementById("balancePreviewImage").src = "Batelco_2024BalanceSheet.png";
+} else {
+  document.getElementById("incomePreviewImage").src = "RAKCeramics_IncomeStatement.png";
+  document.getElementById("balancePreviewImage").src = "RAKCeramics_BalanceSheet.png";
+}
 
+// Show images
+document.getElementById("incomePreviewImage").style.display = "block";
+document.getElementById("balancePreviewImage").style.display = "block";
+
+          setTimeout(() => {
+if (isBatelco) {
+  document.getElementById("financialTable1").style.display = "none";
+  document.getElementById("financialTable2").style.display = "none";
+  document.getElementById("nikePL").style.display = "none";
+  document.getElementById("nikeBS").style.display = "none";
+  document.getElementById("batelcoPL").style.display = "block";
+  document.getElementById("batelcoBS").style.display = "block";
+} else if (isNike) {
+  document.getElementById("financialTable1").style.display = "none";
+  document.getElementById("financialTable2").style.display = "none";
+  document.getElementById("batelcoPL").style.display = "none";
+  document.getElementById("batelcoBS").style.display = "none";
+  document.getElementById("nikePL").style.display = "block";
+  document.getElementById("nikeBS").style.display = "block";
+} else {
+  document.getElementById("nikePL").style.display = "none";
+  document.getElementById("nikeBS").style.display = "none";
+  document.getElementById("batelcoPL").style.display = "none";
+  document.getElementById("batelcoBS").style.display = "none";
+  document.getElementById("financialTable1").style.display = "table";
+  document.getElementById("financialTable2").style.display = "table";
+}
+
+            console.log("Displaying results after delay.");
+            document.getElementById("loading").style.display = "none";
+            document.getElementById("result").style.display = "block";
+            updateRatiosFromTables();
+renderApprovalButtons(); // 🔸 Add this
+
+// Also trigger when approved amount is changed manually
+document.getElementById("approvedAmountInput").addEventListener("input", renderApprovalButtons);
+          }, 15000);
+        });
 
       function colorRatioRowsAccurately() {
         const ratioTable = document.getElementById("ratios");
@@ -2034,73 +1897,190 @@ function switchLeftTab(tabName) {
 
 
 function populateFinancialHealthTable() {
-    const isNike = document.getElementById("nikePL").style.display === "block";
-    const isBatelco = document.getElementById("batelcoPL").style.display === "block";
+  const isNike = document.getElementById("nikePL").style.display === "block";
+  const isBatelco = document.getElementById("batelcoPL").style.display === "block";
 
-    // ✅ Extract 2024 values directly from the ratios table
-    const ratioRows = document.querySelectorAll("#ratios tbody tr");
-    const ratioMap2024 = {};
-    ratioRows.forEach(row => {
-        const metric = row.cells[0].innerText.trim();
-        const value = parseFloat(row.cells[1].innerText.trim());
-        if (!isNaN(value)) ratioMap2024[metric] = value;
+  // For Batelco: col 1 = 2024, col 2 = 2023
+  function getBatelcoValue(tableId, rowLabel, colIdx) {
+    const rows = document.querySelectorAll(`#${tableId} tbody tr`);
+    for (let row of rows) {
+      const label = row.cells[0]?.innerText.trim().toLowerCase();
+      if (label === rowLabel.toLowerCase()) {
+        return parseFloat(row.cells[colIdx]?.innerText.replace(/[(),']/g, '').replace(/,/g, "")) || 0;
+      }
+    }
+    return 0;
+  }
+
+  function getValue(tableId, rowLabel, yearCol) {
+    const tableSelector = isNike
+      ? tableId === "financialTable1"
+        ? "#nikePL"
+        : "#nikeBS"
+      : `#${tableId}`;
+    const rows = document.querySelectorAll(`${tableSelector} tbody tr`);
+    for (let row of rows) {
+      const label = row.cells[0]?.innerText.trim().toLowerCase();
+      if (label === rowLabel.toLowerCase()) {
+        return parseFloat(row.cells[yearCol]?.innerText.replace(/,/g, "")) || 0;
+      }
+    }
+    return 0;
+  }
+
+  const healthTable = document.querySelector("#financialHealth tbody");
+  healthTable.innerHTML = "";
+
+  // Cols for Batelco and others
+  const idx2024 = 1, idx2023 = 2;
+
+  const metrics = [
+    {
+      metric: "Short Term Liab./Total Assets",
+      batelco: {
+        num: () => getBatelcoValue("batelcoBS", "Total current liabilities", idx2024),
+        denom: () => getBatelcoValue("batelcoBS", "Total assets", idx2024),
+        num2023: () => getBatelcoValue("batelcoBS", "Total current liabilities", idx2023),
+        denom2023: () => getBatelcoValue("batelcoBS", "Total assets", idx2023)
+      },
+      default: {
+        numLabel: "Total current liabilities",
+        denomLabel: "Total assets",
+        tableId: "financialTable2"
+      }
+    },
+    {
+      metric: "Net Profit Margin",
+      batelco: {
+        num: () => getBatelcoValue("batelcoPL", "Profit for the period", idx2024),
+        denom: () => getBatelcoValue("batelcoPL", "REVENUE", idx2024),
+        num2023: () => getBatelcoValue("batelcoPL", "Profit for the period", idx2023),
+        denom2023: () => getBatelcoValue("batelcoPL", "REVENUE", idx2023)
+      },
+      default: {
+        numLabel: isNike ? "Net income" : "Profit for the period",
+        denomLabel: isNike ? "Revenues" : "Revenue",
+        tableId: "financialTable1"
+      }
+    },
+    {
+      metric: "Equity / Total Liabilities (t-1)",
+      batelco: {
+        num: () => getBatelcoValue("batelcoBS", "Total equity", idx2024),
+        denom: () => getBatelcoValue("batelcoBS", "Total liabilities", idx2024),
+        num2023: () => getBatelcoValue("batelcoBS", "Total equity", idx2023),
+        denom2023: () => getBatelcoValue("batelcoBS", "Total liabilities", idx2023)
+      },
+      default: {
+        numLabel: isNike ? "Total shareholders' equity" : "Total equity",
+        denomLabel: "Total liabilities",
+        tableId: "financialTable2"
+      }
+    },
+    {
+      metric: "Inventories / Current Assets",
+      batelco: {
+        num: () => getBatelcoValue("batelcoBS", "Inventories", idx2024),
+        denom: () => getBatelcoValue("batelcoBS", "Total current assets", idx2024),
+        num2023: () => getBatelcoValue("batelcoBS", "Inventories", idx2023),
+        denom2023: () => getBatelcoValue("batelcoBS", "Total current assets", idx2023)
+      },
+      default: {
+        numLabel: "Inventories",
+        denomLabel: "Total current assets",
+        tableId: "financialTable2"
+      }
+    },
+    {
+      metric: "Cash Ratio",
+      batelco: {
+        num: () => getBatelcoValue("batelcoBS", "Cash and bank balances", idx2024),
+        denom: () => getBatelcoValue("batelcoBS", "Total current liabilities", idx2024),
+        num2023: () => getBatelcoValue("batelcoBS", "Cash and bank balances", idx2023),
+        denom2023: () => getBatelcoValue("batelcoBS", "Total current liabilities", idx2023)
+      },
+      default: {
+        numLabel: isNike ? "Cash and equivalents" : "Cash and cash equivalents",
+        denomLabel: "Total current liabilities",
+        tableId: "financialTable2"
+      }
+    },
+    {
+      metric: "EBIT / Net Sales",
+      batelco: {
+        num: () => getBatelcoValue("batelcoPL", "Profit before taxation", idx2024),
+        denom: () => getBatelcoValue("batelcoPL", "REVENUE", idx2024),
+        num2023: () => getBatelcoValue("batelcoPL", "Profit before taxation", idx2023),
+        denom2023: () => getBatelcoValue("batelcoPL", "REVENUE", idx2023)
+      },
+      default: {
+        numLabel: isNike ? "Income before income taxes" : "Profit before tax",
+        denomLabel: isNike ? "Revenues" : "Revenue",
+        tableId: "financialTable1"
+      }
+    }
+  ];
+
+  metrics.forEach((r) => {
+    let val2024, val2023;
+
+    if (isBatelco) {
+      // Calculate for Batelco
+      const num2024 = r.batelco.num();
+      const denom2024 = r.batelco.denom();
+      const num2023 = r.batelco.num2023();
+      const denom2023 = r.batelco.denom2023();
+      val2024 = denom2024 !== 0 ? num2024 / denom2024 : NaN;
+      val2023 = denom2023 !== 0 ? num2023 / denom2023 : NaN;
+    } else if (isNike) {
+      // Handle Nike case (special for equity/liabilities)
+      if (r.metric === "Equity / Total Liabilities (t-1)") {
+        const equity2024 = getValue(r.default.tableId, r.default.numLabel, 1);
+        const equity2023 = getValue(r.default.tableId, r.default.numLabel, 2);
+        const assets2024 = getValue("financialTable2", "Total assets", 1);
+        const assets2023 = getValue("financialTable2", "Total assets", 2);
+        const liab2024 = assets2024 - equity2024;
+        const liab2023 = assets2023 - equity2023;
+        val2024 = liab2024 !== 0 ? equity2024 / liab2024 : NaN;
+        val2023 = liab2023 !== 0 ? equity2023 / liab2023 : NaN;
+      } else {
+        const num2024 = getValue(r.default.tableId, r.default.numLabel, 1);
+        const denom2024 = getValue(r.default.tableId, r.default.denomLabel, 1);
+        const num2023 = getValue(r.default.tableId, r.default.numLabel, 2);
+        const denom2023 = getValue(r.default.tableId, r.default.denomLabel, 2);
+        val2024 = denom2024 !== 0 ? num2024 / denom2024 : NaN;
+        val2023 = denom2023 !== 0 ? num2023 / denom2023 : NaN;
+      }
+    } else {
+      // Default (RAK)
+      const num2024 = getValue(r.default.tableId, r.default.numLabel, 1);
+      const denom2024 = getValue(r.default.tableId, r.default.denomLabel, 1);
+      const num2023 = getValue(r.default.tableId, r.default.numLabel, 2);
+      const denom2023 = getValue(r.default.tableId, r.default.denomLabel, 2);
+      val2024 = denom2024 !== 0 ? num2024 / denom2024 : NaN;
+      val2023 = denom2023 !== 0 ? num2023 / denom2023 : NaN;
+    }
+
+    const diff = (val2024 - val2023) / Math.abs(val2023) * 100;
+    const diffStr = isNaN(diff) ? "N/A" : (diff > 0 ? "+" : "") + diff.toFixed(2) + "%";
+    const diffClass = diff > 0 ? "text-success" : (diff < 0 ? "text-danger" : "");
+
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${r.metric}</td>
+      <td>${isNaN(val2024) ? "N/A" : val2024.toFixed(4)}</td>
+      <td>${isNaN(val2023) ? "N/A" : val2023.toFixed(4)}</td>
+      <td class="${diffClass}">${diffStr}</td>
+    `;
+
+    // Enable chart update on click
+    row.addEventListener("click", () => {
+      renderFinancialHealthChart(r.metric, val2023, val2024);
     });
 
-    const healthTable = document.querySelector("#financialHealth tbody");
-    healthTable.innerHTML = "";
-
-    // ✅ Define metrics mapping to link with ratio names
-    const metrics = [
-        { name: "Short Term Liab./Total Assets", key: "Short Term Liab./Total Assets" },
-        { name: "Net Profit Margin", key: "Net Profit Margin" },
-        { name: "Equity / Total Liabilities (t-1)", key: "Equity / Total Liabilities (t-1)" },
-        { name: "Inventories / Current Assets", key: "Inventories / Current Assets" },
-        { name: "Cash Ratio", key: "Cash Ratio" },
-        { name: "EBIT / Net Sales", key: "EBIT / Net Sales" }
-    ];
-
-    // ✅ Use existing logic only for 2023 values
-    metrics.forEach(metricObj => {
-        const metricName = metricObj.name;
-        const val2024 = ratioMap2024[metricObj.key];  // ✅ uses ratios table value
-
-        // keep using your existing function to calculate 2023
-        const val2023 = calculate2023Value(metricName, isNike, isBatelco);  
-
-        const diff = (val2024 && val2023) ? ((val2024 - val2023) / Math.abs(val2023) * 100) : NaN;
-        const diffStr = isNaN(diff) ? "N/A" : (diff > 0 ? "+" : "") + diff.toFixed(2) + "%";
-        const diffClass = diff > 0 ? "text-success" : (diff < 0 ? "text-danger" : "");
-
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${metricName}</td>
-            <td>${isNaN(val2024) ? "N/A" : val2024.toFixed(4)}</td>
-            <td>${isNaN(val2023) ? "N/A" : val2023.toFixed(4)}</td>
-            <td class="${diffClass}">${diffStr}</td>
-        `;
-
-        // ✅ Attach chart rendering event
-        row.addEventListener("click", () => {
-            renderFinancialHealthChart(metricName, val2023, val2024);
-        });
-
-        healthTable.appendChild(row);
-    });
+    healthTable.appendChild(row);
+  });
 }
-
-function calculate2023Value(metricName, isNike, isBatelco) {
-    // Basic default ratios using hardcoded values from 2023
-    const defaults = {
-        "Short Term Liab./Total Assets": 0.36,
-        "Net Profit Margin": 0.07,
-        "Equity / Total Liabilities (t-1)": 0.75,
-        "Inventories / Current Assets": 0.48,
-        "Cash Ratio": 0.10,
-        "EBIT / Net Sales": 0.086
-    };
-    return defaults[metricName] || NaN;
-}
-
 
 
 let financialChart;
@@ -2181,13 +2161,7 @@ setTimeout(() => {
     renderFinancialHealthChart(metric, val2023, val2024);
   }
   updateFinancialModuleScore();
-  populateFinancialHealthTable();  
-}, 10);
-
-document.addEventListener("DOMContentLoaded", () => {
-   updateRatiosFromTables();   // ✅ ensures ratios + financial health table are populated on load
-});
-
+}, 1000);
 
 
 function renderApprovalButtons() {
