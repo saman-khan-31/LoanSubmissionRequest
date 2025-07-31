@@ -1195,6 +1195,8 @@
     </div>
 
     <script>
+
+
       let editHistory = {};
 
       function toggleEdit(tableId) {
@@ -1290,7 +1292,7 @@
 const positionFile = document.getElementById("financialPosition").files[0];
 const isNike = profitFile?.name.startsWith("Nike") || positionFile?.name.startsWith("Nike");
 const isBatelco = profitFile?.name.startsWith("Batelco") || positionFile?.name.startsWith("Batelco");
-
+const isRAK = profitFile?.name.startsWith("RAK") || positionFile?.name.startsWith("RAK");
 
 if (isBatelco) {
   document.getElementById("batelcoCompanyInfo").style.display = "table";
@@ -1321,8 +1323,8 @@ if (isNike) {
   document.getElementById("incomePreviewImage").src = "Batelco_2024IncomeStatement.png";
   document.getElementById("balancePreviewImage").src = "Batelco_2024BalanceSheet.png";
 } else {
-  document.getElementById("incomePreviewImage").src = "RAKCeramics_IncomeStatement.png";
-  document.getElementById("balancePreviewImage").src = "RAKCeramics_BalanceSheet.png";
+  document.getElementById("incomePreviewImage").src = "RAKCeramics_IncomeStatement.jpg";
+  document.getElementById("balancePreviewImage").src = "RAKCeramics_BalanceSheet.jpg";
 }
 
 // Show images
